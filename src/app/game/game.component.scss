@@ -9,13 +9,21 @@
   height: 100%;
 }
 .mat-sidenav{
-  display: flex;
-  width: calc(100% - 89%);
-  height: 100%;
+  position: absolute;
+  padding-top: 64px;
+  height: 100vh ;
 }
 
 .mat-toolbar{
   display: flex;
   width: 100%;
 
+}
+.demo-app-header {
+  // position: fixed;
+  top: 0;
+  z-index: 2;
+}
+.mat-sidenav-content {
+  z-index: 3;
 }
