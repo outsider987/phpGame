@@ -1,9 +1,10 @@
-<mat-menu #appMenu="matMenu">
-  <button mat-menu-item>Settings</button>
-  <button mat-menu-item>Help</button>
-</mat-menu>
+<mat-sidenav-container [hasBackdrop]="false">
+  <mat-sidenav #sideNav  mode="over" position="end">
+    我是左邊選單
+  </mat-sidenav>
 
-<button mat-icon-button [matMenuTriggerFor]="appMenu">
-  <!-- <mat-icon>more_vert</mat-icon> -->
-</button>
-<div>test</div>
+  <mat-sidenav-content>
+      <button mat-button (click)="sideNav.toggle()">切換左邊選單狀態</button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

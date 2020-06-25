@@ -9,7 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 export class GameComponent implements OnInit {
   // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   constructor() { }
-
+  showFiller = false;
   ngOnInit(): void {
   }
 

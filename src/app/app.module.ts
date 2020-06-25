@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
-import { MatMenuModule } from '@angular/material/menu';
+import { MaterialModule } from './material/material.module';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

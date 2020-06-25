@@ -1,0 +1,12 @@
+.app{
+  width: 100%;
+  height:calc(100% - 37px);
+  display: block;
+  font-size: initial;
+  &__router{
+
+  }
+  &__titlebar{
+    height: 39px;
+  }
+}
