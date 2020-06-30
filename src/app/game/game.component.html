@@ -1,20 +1,54 @@
 <div class="main">
+  <mat-toolbar color="primary" class="header-toolbar">
+    <button mat-icon-button (click)="toggleSideNav(Menu)">
+      <mat-icon>{{ Menu.opened ? 'close' : 'menu' }}</mat-icon>
+    </button>
+    <span>I'm The Game</span>
 
+    <span class="toolbar-seprator"></span>
+    <button mat-icon-button (click)="toggleSideNav(drawerRight)">
+      <mat-icon>face</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>message</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+
+  </mat-toolbar>
 
   <mat-sidenav-container [hasBackdrop]="false">
-    <mat-sidenav #sideNav mode="over" position="start">
+    <mat-sidenav #Menu mode="push" position="start" class="sidenav">
       我是左邊選單
     </mat-sidenav>
     <mat-sidenav-content>
-            <mat-toolbar color="primary" class="demo-app-header">
-        <button mat-icon-button (click)="sideNav.toggle()">
-          <mat-icon>{{ sideNav.opened ? 'close' : 'menu' }}</mat-icon>
-        </button>
-        <span>I'm The Game</span>
-      </mat-toolbar>
+
       <app-main></app-main>
    </mat-sidenav-content>
-
   </mat-sidenav-container>
+
+  <mat-sidenav-container fixedInViewport="true">
+    <mat-sidenav #drawerRight position="end" mode="push" class="sidenavRight" >
+        <mat-toolbar color="primary">
+          <span>基本資料</span>
+          <span>
+            <mat-icon>verified_user</mat-icon>
+          </span>
+        </mat-toolbar>
+        <mat-list>
+          <mat-list-item class="l-sub-section">
+            <mat-icon>code</mat-icon>
+            Peterhu2Tri
+          </mat-list-item>
+          <mat-list-item class="l-sub-section">
+            <mat-icon>account_circle</mat-icon>
+           三十天鐵人賽
+          </mat-list-item>
+         ...
+        </mat-list>
+      </mat-sidenav>
+    </mat-sidenav-container>
+
 </div>
 
