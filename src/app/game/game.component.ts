@@ -21,7 +21,5 @@ export class GameComponent implements OnInit {
     });
 
   }
-  show(item: string) {
-    this.programName = item;
-  }
+
 }

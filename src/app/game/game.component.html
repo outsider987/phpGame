@@ -9,7 +9,7 @@
     <button mat-icon-button (click)="toggleSideNav(drawerRight)">
       <mat-icon>face</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="toggleSideNav(drawerMsg)">
       <mat-icon>message</mat-icon>
     </button>
     <button mat-icon-button>
@@ -25,30 +25,52 @@
     <mat-sidenav-content>
 
       <app-main></app-main>
-   </mat-sidenav-content>
+    </mat-sidenav-content>
   </mat-sidenav-container>
 
   <mat-sidenav-container fixedInViewport="true">
-    <mat-sidenav #drawerRight position="end" mode="push" class="sidenavRight" >
-        <mat-toolbar color="primary">
-          <span>基本資料</span>
-          <span>
-            <mat-icon>verified_user</mat-icon>
-          </span>
-        </mat-toolbar>
-        <mat-list>
-          <mat-list-item class="l-sub-section">
-            <mat-icon>code</mat-icon>
-            Peterhu2Tri
-          </mat-list-item>
-          <mat-list-item class="l-sub-section">
-            <mat-icon>account_circle</mat-icon>
-           三十天鐵人賽
-          </mat-list-item>
-         ...
-        </mat-list>
-      </mat-sidenav>
-    </mat-sidenav-container>
+    <mat-sidenav #drawerRight position="end" mode="push" class="sidenavRight">
+      <mat-toolbar color="primary">
+        <span>基本資料</span>
+        <span>
+          <mat-icon>verified_user</mat-icon>
+        </span>
+      </mat-toolbar>
+      <mat-list>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          Peterhu2Tri
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>account_circle</mat-icon>
+          我是右邊選單的帳號
+        </mat-list-item>
+        ...
+      </mat-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+
+  <mat-sidenav-container fixedInViewport="true">
+    <mat-sidenav #drawerMsg position="end" mode="push" class="sidenavRight">
+      <mat-toolbar color="primary">
+        <span>基本資料</span>
+        <span>
+          <mat-icon>verified_user</mat-icon>
+        </span>
+      </mat-toolbar>
+
+      <h3 matSubheader>好友訊息</h3>
+      <mat-list-item>
+        <img matListAvatar src="..." />
+        <p matLine>志玲</p>
+        <p matLine>hi，好久不見，最近好嗎？</p>
+      </mat-list-item>
+      <mat-list-item>
+        <img matListAvatar src="..." />
+        <p matLine>依晨</p>
+        <p matLine>找時間吃個飯吧？</p>
+      </mat-list-item>
+    </mat-sidenav>
+  </mat-sidenav-container>
 
 </div>
-
