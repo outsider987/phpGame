@@ -6,10 +6,10 @@
     <span>I'm The Game</span>
 
     <span class="toolbar-seprator"></span>
-    <button mat-icon-button (click)="toggleSideNav(drawerRight)">
+    <button mat-icon-button (click)="toggleSideNav(drawerRight) "(click)="drawerMsg.close()">
       <mat-icon>face</mat-icon>
     </button>
-    <button mat-icon-button (click)="toggleSideNav(drawerMsg)">
+    <button mat-icon-button (click)="toggleSideNav(drawerMsg)" (click)="drawerRight.close()">
       <mat-icon>message</mat-icon>
     </button>
     <button mat-icon-button>
@@ -53,7 +53,7 @@
   <mat-sidenav-container fixedInViewport="true">
     <mat-sidenav #drawerMsg position="end" mode="push" class="sidenavRight">
       <mat-toolbar color="primary">
-        <span>基本資料</span>
+        <span>聊天室</span>
         <span>
           <mat-icon>verified_user</mat-icon>
         </span>
