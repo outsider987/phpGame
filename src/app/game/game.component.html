@@ -20,7 +20,31 @@
 
   <mat-sidenav-container [hasBackdrop]="false">
     <mat-sidenav #Menu mode="push" position="start" class="sidenav">
-      我是左邊選單
+      <mat-toolbar color="primary">
+        <span>選單</span>
+        <span>
+          <mat-icon>verified_user</mat-icon>
+        </span>
+      </mat-toolbar>
+      <mat-list>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          第一遊戲
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          第二遊戲
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          第三遊戲
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>account_circle</mat-icon>
+          勝率曲線圖
+        </mat-list-item>
+        ...
+      </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
 
