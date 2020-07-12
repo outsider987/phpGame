@@ -1,43 +1,40 @@
+
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm ,} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/shared/api.service';
 
-@Component({
-selector: 'app-register',
-templateUrl: './register.component.html',
-styleUrls: ['./register.component.scss']
-})
 
-export class RegisterComponent implements OnInit {
+@Component({
+selector: 'app-login',
+templateUrl: './login.component.html',
+styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
 angForm: FormGroup;
 constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
 this.angForm = this.fb.group({
 email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-password: ['', Validators.required],
-name: ['', Validators.required],
-mobile: ['', Validators.required]
+password: ['', Validators.required]
 });
 }
 
 ngOnInit() {
 }
-
 postdata(angForm1)
 {
-this.dataService.userregistration(angForm1.value.name,angForm1.value.email,angForm1.value.password)
+this.dataService.userlogin(angForm1.value.email,angForm1.value.password)
 .pipe(first())
 .subscribe(
 data => {
-this.router.navigate(['login']);
+const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
+this.router.navigate([redirect]);
 },
-
 error => {
+alert("User name or password is incorrect")
 });
 }
-
 get email() { return this.angForm.get('email'); }
 get password() { return this.angForm.get('password'); }
-get name() { return this.angForm.get('name'); }
 }
