@@ -14,12 +14,13 @@ if($result = mysqli_query($con,$sql))
   {
     // $users[$cr]['ID']    = $row['id'];
     // $users[$cr]['user_name'] = $row['model'];
-    $users[$cr]['ID']= $row['ID'];
-    // $users[$cr]['price'] = $row['price'];
+    $users[$cr]['user_name']= $row['user_name'];
+    $users[$cr]['user_password'] = $row['user_password'];
+    $users[$cr]['user_email'] = $row['user_email'];
     $cr++;
   }
-  print_r($users);
-  // echo json_encode(['data'=>$cars]);
+  // print_r($users);
+  echo json_encode(['data'=>$users]);
 }
 else
 {

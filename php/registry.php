@@ -1,22 +1,41 @@
 <?php
-include_once("database.php");
+require 'connect.php';
+
+// Get the posted data.
 $postdata = file_get_contents("php://input");
+
 if(isset($postdata) && !empty($postdata))
 {
-$request = json_decode($postdata);
-$name = trim($request->name);
-$pwd = mysqli_real_escape_string($mysqli, trim($request->pwd));
-$email = mysqli_real_escape_string($mysqli, trim($request->email));
-$sql = "INSERT INTO users(name,password,email) VALUES ('$name','$pwd','$email')";
-if ($mysqli->query($sql) === TRUE) {
-$authdata = [
-'name' => $name,
-'pwd' => '',
-'email' => $email,
-'Id' => mysqli_insert_id($mysqli)
-];
-echo json_encode($authdata);
-}
-}
+  // Extract the data.
+  $request = json_decode($postdata);
 
-?>
+
+  // Validate.
+  if(trim($request->data->model) === '' || (int)$request->data->price < 1)
+  {
+    return http_response_code(400);
+  }
+
+  // Sanitize.
+  $model = mysqli_real_escape_string($con, trim($request->data->model));
+  $price = mysqli_real_escape_string($con, (int)$request->data->price);
+
+
+  // Store.
+  $sql = "INSERT INTO `user_information`(`user_name`,`user_password`,`user_email`) VALUES (null,'{$model}','{$price}')";
+
+  if(mysqli_query($con,$sql))
+  {
+    http_response_code(201);
+    $car = [
+      'model' => $model,
+      'price' => $price,
+      'id'    => mysqli_insert_id($con)
+    ];
+    echo json_encode(['data'=>$car]);
+  }
+  else
+  {
+    http_response_code(422);
+  }
+}
