@@ -10,12 +10,12 @@ providedIn: 'root'
 
 export class ApiService {
 redirectUrl: string;
-baseUrl:string = "http://localhost/angular_admin/php";
+baseUrl:string = "http://localhost/phpGame/php/";
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 constructor(private httpClient : HttpClient) { }
 public userlogin(username, password) {
 alert(username)
-return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
+return this.httpClient.post<any>(this.baseUrl + '/registry.php', { username, password })
 .pipe(map(Users => {
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);

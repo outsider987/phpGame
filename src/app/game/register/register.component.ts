@@ -27,15 +27,15 @@ ngOnInit() {
 
 postdata(angForm1)
 {
-this.dataService.userregistration(angForm1.value.name,angForm1.value.email,angForm1.value.password)
-.pipe(first())
-.subscribe(
-data => {
-this.router.navigate(['login']);
-},
+  this.dataService.userregistration(angForm1.value.name,angForm1.value.email,angForm1.value.password)
+  .pipe(first())
+  .subscribe(
+  data => {
+  this.router.navigate(['login']);
+  },
 
-error => {
-});
+  error => {
+  });
 }
 
 get email() { return this.angForm.get('email'); }
