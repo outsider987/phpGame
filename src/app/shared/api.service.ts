@@ -15,7 +15,7 @@ baseUrl:string = "http://localhost/phpGame/php/";
 constructor(private httpClient : HttpClient) { }
 public userlogin(username, password) {
 alert(username)
-return this.httpClient.post<any>(this.baseUrl + '/registry.php', { username, password })
+return this.httpClient.post<any>(this.baseUrl + 'registry', { username, password })
 .pipe(map(Users => {
 this.setToken(Users[0].name);
 this.getLoggedInName.emit(true);
@@ -24,7 +24,7 @@ return Users;
 }
 
 public userregistration(name,email,pwd) {
-return this.httpClient.post<any>(this.baseUrl + '/register.php', { name,email, pwd })
+return this.httpClient.post<any>(this.baseUrl + 'registry.php', { name,email, pwd })
 .pipe(map(Users => {
 return Users;
 }));
