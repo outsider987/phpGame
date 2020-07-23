@@ -8,17 +8,17 @@
 <div class="form-group">
 <label for="name">Name</label>
 <input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name">
-<div>incorrect name</div>
+<div *ngIf="angForm.get('name').hasError('required')">incorrect name</div>
 </div>
 <div class="form-group">
 <label for="email">Email</label>
 <input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
-<div>incorrect email</div>
+<div *ngIf="angForm.get('email').hasError('required')">incorrect email</div>
 </div>
 <div class="form-group">
-<label for="Password">Password</label>
-<input type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
-<div>incorrect password</div>
+<label for="password">Password</label>
+<input type="password" name="password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
+<div *ngIf="angForm.get('password').hasError('required')">incorrect password</div>
 </div>
 <button type="submit" class="btn btn-success" >Register</button>
 </form>

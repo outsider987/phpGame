@@ -18,7 +18,6 @@ email: ['', [Validators.required
   ,Validators.minLength(1), Validators.email]],
 password: ['', Validators.required],
 name: ['', Validators.required],
-mobile: ['', Validators.required]
 });
 }
 

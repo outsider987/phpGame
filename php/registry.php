@@ -11,18 +11,19 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Validate.
-  if(trim($request->data->model) === '' || (int)$request->data->price < 1)
+  if(trim($request->name) === '')
   {
     return http_response_code(400);
   }
 
   // Sanitize.
-  $model = mysqli_real_escape_string($con, trim($request->data->model));
-  $price = mysqli_real_escape_string($con, (int)$request->data->price);
+  $name = mysqli_real_escape_string($con, trim($request->name));
+  $email = mysqli_real_escape_string($con, trim($request->email));
+  $pwd =mysqli_real_escape_string($con, trim($request->pwd));
 
 
   // Store.
-  $sql = "INSERT INTO `user_information`(`user_name`,`user_password`,`user_email`) VALUES (null,'{$model}','{$price}')";
+  $sql = "INSERT INTO `user_information`(`user_name`,`user_password`,`user_mail`) VALUES ('{$name}','{$email}','{$pwd}')";
 
   if(mysqli_query($con,$sql))
   {
