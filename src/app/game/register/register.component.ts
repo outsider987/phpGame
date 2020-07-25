@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     this.angForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")])],
 
-      name: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)]),UsernameValidator.cannotContainSpace],
+      name: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidator.cannotContainSpace]),
       password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
     });
     // debugger
@@ -30,12 +30,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  //code snippet from https://stackoverflow.com/a/42999816/4851087
-  noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || "").trim().length === 0;
-    const isValid = !isWhitespace;
-    return (isValid ? null : { "whitespace": true });
-  }
+
   postdata(angForm1) {
     this.dataService.userregistration(angForm1.value.name, angForm1.value.email, angForm1.value.password)
       .subscribe(
