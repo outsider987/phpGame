@@ -7,18 +7,21 @@
 <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
 <div class="form-group">
 <label for="name">Name</label>
-<input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name">
-<div *ngIf="angForm.get('name').hasError('required')">incorrect name</div>
+<input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name" [class.is-invalid] = "angForm.get('name').invalid && angForm.get('name').touched">
+<div *ngIf="angForm.get('name').hasError('required') && angForm.controls['name'].touched"class="alert alert-danger">name coudln't be emty</div>
+<div *ngIf="angForm.controls['name'].hasError('minlength') && angForm.controls['name'].touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
 </div>
 <div class="form-group">
 <label for="email">Email</label>
-<input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
-<div *ngIf="angForm.get('email').hasError('required')">incorrect email</div>
+<input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email"  [class.is-invalid] = "angForm.get('email').invalid && angForm.get('email').touched">
+<div *ngIf="angForm.get('email').hasError('required') && angForm.controls['email'].touched"class="alert alert-danger">email coudln't be emty</div>
+<div *ngIf="angForm.get('email').invalid && angForm.controls['email'].touched"class="alert alert-danger">email is wrong format</div>
 </div>
-<div class="form-group">
+<div class="form-group"[ngClass]="{'has-error':!angForm.controls['password'].valid && angForm.controls['password'].touched}">
 <label for="password">Password</label>
-<input type="password" name="password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
-<div *ngIf="angForm.get('password').hasError('required')">incorrect password</div>
+<input type="password" name="password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password" [class.is-invalid] = "angForm.get('password').invalid && angForm.get('password').touched">
+<div *ngIf="angForm.get('password').hasError('required') && angForm.controls['password'].touched"class="alert alert-danger">password coudln't be emty</div>
+<div *ngIf="angForm.controls['password'].hasError('minlength') && angForm.controls['password'].touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
 </div>
 <button type="submit" class="btn btn-success" >Register</button>
 </form>
