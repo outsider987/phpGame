@@ -31,15 +31,18 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  postdata(angForm1) {
-    this.dataService.userregistration(angForm1.value.name, angForm1.value.email, angForm1.value.password)
-      .subscribe(
-        data => {
-          //this.router.navigate(['login']);
-        },
+  postdata(angForm1: FormGroup) {
+    if (angForm1.valid) {
+      this.dataService.userregistration(angForm1.value.name, angForm1.value.email, angForm1.value.password)
+        .subscribe(
+          data => {
+            //this.router.navigate(['login']);
+          },
 
-        error => {
-        });
+          error => {
+          });
+    }
+
   }
 
   get email() { return this.angForm.get('email'); }
