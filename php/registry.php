@@ -23,7 +23,7 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Store.
-  $sql = "INSERT INTO `user_information`(`user_name`,`user_password`,`user_mail`) VALUES ('{$name}','{$email}','{$pwd}')";
+  $sql = "INSERT INTO `user_information`(`user_name`,`user_mail`,`user_password`) VALUES ('{$name}','{$email}','{$pwd}')";
 
   if(mysqli_query($con,$sql))
   {

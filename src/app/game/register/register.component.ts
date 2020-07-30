@@ -7,6 +7,7 @@ import { UsernameValidator } from 'src/app/core/models/validatorFile';
 
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,11 +37,12 @@ export class RegisterComponent implements OnInit {
       this.dataService.userregistration(angForm1.value.name, angForm1.value.email, angForm1.value.password)
         .subscribe(
           data => {
-            //this.router.navigate(['login']);
+            this.router.navigate(['main']);
           },
 
           error => {
           });
+          this.router.navigate(['main']);
     }
 
   }
