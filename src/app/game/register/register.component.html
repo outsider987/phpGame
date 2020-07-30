@@ -10,7 +10,7 @@
 <input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name" [class.is-invalid] = "name.invalid && name.touched">
 <div *ngIf="name.hasError('required') && name.touched"class="alert alert-danger">name coudln't be emty</div>
 <div *ngIf="name.hasError('minlength') && name.touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
-<diV *ngIf="name.errors.cannotContainSpace " class="alert alert-danger">Could'nt had whitespace .</diV>
+<!-- <diV *ngIf="name.errors.cannotContainSpace " class="alert alert-danger">Could'nt had whitespace .</diV> -->
 </div>
 <div class="form-group">
 <label for="email">Email</label>
