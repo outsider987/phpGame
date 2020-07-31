@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     this.angForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")])],
 
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3),UsernameValidator.cannotContainSpace]),
       password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
     });
     // debugger
