@@ -23,17 +23,18 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Store.
-  $sql = "INSERT INTO `user_information`(`user_name`,`user_mail`,`user_password`) VALUES ('{$name}','{$email}','{$pwd}')";
+  $insertdata = "INSERT INTO `user_information`(`user_name`,`user_mail`,`user_password`) VALUES ('{$name}','{$email}','{$pwd}')";
 
-  if(mysqli_query($con,$sql))
+  if(mysqli_query($con,$insertdata))
   {
     http_response_code(201);
-    $car = [
-      'model' => $model,
-      'price' => $price,
-      'id'    => mysqli_insert_id($con)
+    $user = [
+      'user_name' => $name,
+      'user_mail' => $email,
+      'user_password'=>$pwd,
+      'ID'    => mysqli_insert_id($con)
     ];
-    echo json_encode(['data'=>$car]);
+    echo json_encode(['data'=>$user]);
   }
   else
   {
