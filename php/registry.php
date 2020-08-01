@@ -11,7 +11,7 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Validate.
-  if(trim($request->name) === '')
+  if(trim($request->name) === ''|| trim($request->email) === ''|| trim($request->pwd) === '')
   {
     return http_response_code(400);
   }

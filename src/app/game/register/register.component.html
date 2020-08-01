@@ -24,7 +24,7 @@
 <div *ngIf="password.hasError('required') && password.touched"class="alert alert-danger">password coudln't be emty</div>
 <div *ngIf="password.hasError('minlength') && password.touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
 </div>
-<button type="submit" class="btn btn-success" >Register</button>
+<button type="submit" class="btn btn-success"[disabled]="!angForm.valid" >Register</button>
 </form>
 </div>
 </div>
