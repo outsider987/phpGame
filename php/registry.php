@@ -21,6 +21,16 @@ if(isset($postdata) && !empty($postdata))
   $email = mysqli_real_escape_string($con, trim($request->email));
   $pwd =mysqli_real_escape_string($con, trim($request->pwd));
 
+  $check_duplicate_name = "SELECT user_name from user_information
+  WHERE user_name = '$name'";
+
+  $result = mysqli_query($con,$insertdata);
+  $count = mysqli_num_rows($con,$check_duplicate_name);
+
+  if($count > 0 ){
+    echo "<h1>User name is duplicate</h1>";
+      return false;
+  }
 
   // Store.
   $insertdata = "INSERT INTO `user_information`(`user_name`,`user_mail`,`user_password`) VALUES ('{$name}','{$email}','{$pwd}')";
