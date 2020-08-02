@@ -24,12 +24,12 @@ if(isset($postdata) && !empty($postdata))
   $check_duplicate_name = "SELECT user_name from user_information
   WHERE user_name = '$name'";
 
-  $result = mysqli_query($con,$insertdata);
-  $count = mysqli_num_rows($con,$check_duplicate_name);
+  $result = mysqli_query($con,$check_duplicate_name);
+  $count = mysqli_num_rows($result);
 
   if($count > 0 ){
     echo "<h1>User name is duplicate</h1>";
-      return false;
+    return false;
   }
 
   // Store.
