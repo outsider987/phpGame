@@ -37,7 +37,8 @@ export class RegisterComponent implements OnInit {
       this.dataService.userregistration(angForm1.value.name, angForm1.value.email, angForm1.value.password)
         .subscribe(
           data => {
-            this.router.navigate(['main']);
+            if(data === false)
+              console.log('here is duplicated');
           },
 
           error => {

@@ -28,7 +28,8 @@ if(isset($postdata) && !empty($postdata))
   $count = mysqli_num_rows($result);
 
   if($count > 0 ){
-    echo "<h1>User name is duplicate</h1>";
+    // echo "<h1>User name is duplicate</h1>";
+    echo json_encode(false);
     return false;
   }
 
