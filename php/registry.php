@@ -1,4 +1,9 @@
 <?php
+
+function VerifyUserData($,$c){
+
+}
+
 require 'connect.php';
 
 // Get the posted data.
