@@ -1,13 +1,17 @@
 <?php
 
 //function
-function VerifyUserData($con,$check_duplicate_name,$user){
+function VerifyUserData($con,$check_duplicate_name){
 
     $result = mysqli_query($con,$check_duplicate_name);
     $count = mysqli_num_rows($result);
 
     if($count > 0 ){
       // echo "<h1>User name is duplicate</h1>";
+      $user = [
+        'validate' =>false,
+        'err'
+      ];
       echo json_encode([false,$user]);
       return false;
     }
@@ -38,17 +42,17 @@ if(isset($postdata) && !empty($postdata))
   $check_duplicate_name = "SELECT user_name from user_information
   WHERE user_name = '$name'";
 
-  VerifyUserData($con,$check_duplicate_name,$user);
+  VerifyUserData($con,$check_duplicate_name);
 
   $check_duplicate_email = "SELECT user_mail from user_information
   WHERE user_mail = '$email'";
 
-  VerifyUserData($con,$check_duplicate_email,$user);
+  VerifyUserData($con,$check_duplicate_email);
 
   $check_duplicate_password = "SELECT user_password from user_information
   WHERE user_password = '$email'";
 
-  VerifyUserData($con,$check_duplicate_password,$user);
+  VerifyUserData($con,$check_duplicate_password);
 
 
 
@@ -58,14 +62,15 @@ if(isset($postdata) && !empty($postdata))
 
   if(mysqli_query($con,$insertdata))
   {
-    // http_response_code(201);
-    // $user = [
-    //   'user_name' => $name,
-    //   'user_mail' => $email,
-    //   'user_password'=>$pwd,
-    //   'ID'    => mysqli_insert_id($con)
-    // ];
-    // echo json_encode(['data'=>$user]);
+    http_response_code(201);
+    $user = [
+      'validate' =>true,
+      'user_name' => $name,
+      'user_mail' => $email,
+      'user_password'=>$pwd,
+      'ID'    => mysqli_insert_id($con)
+    ];
+    echo json_encode(['data'=>$user]);
   }
   else
   {
