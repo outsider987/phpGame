@@ -6,7 +6,12 @@ import { ApiService } from 'src/app/shared/api.service';
 import { UsernameValidator } from 'src/app/core/models/validatorFile';
 
 
-
+enum user_failed_Enum
+{
+  UserName = 0,
+  UserEmail = 1,
+  Userpas = 2
+}
 
 @Component({
   selector: 'app-register',
@@ -38,12 +43,19 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           data => {
               var user = data['data'];
-              if ( user['validate']) {
-              console.log('here is duplicated');
+              if (!user['validate']) {
+                if( user['user_failed_Enum'] === user_failed_Enum.UserName)
+                {
+                  this.angForm.get('name').reset();
+                  this.angForm.get('name').invalid;
+                  console.log('test');
+                }
+
             }
           },
 
           error => {
+
           });
 
     }
