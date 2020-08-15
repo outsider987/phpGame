@@ -25,8 +25,8 @@ return Users;
 
 public userregistration(name,email,pwd) {
 return this.httpClient.post<any>(this.baseUrl + 'registry.php', { name,email, pwd })
-.pipe(map(Users => {
-return Users;
+.pipe(map(data => {
+return data;
 }));
 }
 
