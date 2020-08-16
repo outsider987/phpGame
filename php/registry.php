@@ -5,6 +5,7 @@ abstract class ValidateUserEnum
     const UserName = 0;
     const UserEmail = 1;
     const Userpas = 2;
+    const Sucess = 3;
 }
 //function
 function VerifyUserData($con,$check_duplicate_name,$validateUserEnum){
