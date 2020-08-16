@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm ,} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/api.service';
+import { UserService } from 'src/app/shared/user.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 angForm: FormGroup;
-constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
+constructor(private fb: FormBuilder,private dataService: UserService,private router:Router) {
 this.angForm = this.fb.group({
 email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
 password: ['', Validators.required]

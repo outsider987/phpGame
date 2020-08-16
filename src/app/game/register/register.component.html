@@ -7,11 +7,11 @@
 <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
 <div class="form-group">
 <label for="name">Name</label>
-<input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name" [class.is-invalid] = "name.invalid && name.touched">
+<input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name" [class.is-invalid] = "name.invalid && name.touched ">
 <div *ngIf="name.hasError('required') && name.touched"class="alert alert-danger">name coudln't be emty</div>
 <div *ngIf="name.hasError('minlength') && name.touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
 <diV *ngIf="name.hasError('cannotContainSpace') " class="alert alert-danger">Could'nt had whitespace .</diV>
-<diV *ngIf="user_failed_Enum == user_failed_Enum" class="alert alert-danger">Could'nt had whitespace .</diV>
+<diV *ngIf="user_failed_Enum == 0" class="alert alert-danger">the name is duplciate .</diV>
 
 </div>
 <div class="form-group">

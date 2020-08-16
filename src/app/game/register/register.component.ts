@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/api.service';
+import { UserService } from 'src/app/shared/user.service';
 import { UsernameValidator } from 'src/app/core/models/validatorFile';
 
 
@@ -22,10 +22,9 @@ enum User_failed_Enum {
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
   user_failed_Enum: User_failed_Enum;
-  constructor(private fb: FormBuilder, private dataService: ApiService, private router: Router) {
+  constructor(private fb: FormBuilder, private dataService: UserService, private router: Router) {
     this.angForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")])],
-
       name: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidator.cannotContainSpace]),
       password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
     });
@@ -45,7 +44,7 @@ export class RegisterComponent implements OnInit {
           data => {
             var user = data['data'];
             this.user_failed_Enum = user['user_failed_Enum'];
-            
+
             if (!user['validate']) {
               console.log('test');
             }
