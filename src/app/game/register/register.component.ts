@@ -43,10 +43,12 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           data => {
             var user = data['data'];
-            this.user_failed_Enum = user['user_failed_Enum'];
-
             if (!user['validate']) {
-              console.log('test');
+              this.user_failed_Enum = user['user_failed_Enum'];
+              console.log('duplicate');
+            }
+            else {
+              this.router.navigate(['main']);
             }
           },
 

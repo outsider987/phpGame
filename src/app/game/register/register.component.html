@@ -19,12 +19,14 @@
 <input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email"  [class.is-invalid] = "email.invalid && email.touched">
 <div *ngIf="email.hasError('required') && email.touched"class="alert alert-danger">email coudln't be emty</div>
 <div *ngIf="email.invalid && email.touched"class="alert alert-danger">email is wrong format</div>
+<diV *ngIf="user_failed_Enum == 1" class="alert alert-danger">the mail is duplciate .</diV>
 </div>
 <div class="form-group">
 <label for="password">Password</label>
 <input type="password" name="password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password" [class.is-invalid] = "password.invalid && password.touched">
 <div *ngIf="password.hasError('required') && password.touched"class="alert alert-danger">password coudln't be emty</div>
 <div *ngIf="password.hasError('minlength') && password.touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
+<diV *ngIf="user_failed_Enum == 2" class="alert alert-danger">the password is duplciate .</diV>
 </div>
 <button type="submit" class="btn btn-success"[disabled]="!angForm.valid" >Register</button>
 </form>

@@ -22,6 +22,8 @@ function VerifyUserData($con,$check_duplicate_name,$validateUserEnum){
       echo json_encode(['data'=>$user]);
       return false;
     }
+    else
+      return true;
 }
 
 
