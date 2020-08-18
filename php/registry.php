@@ -51,22 +51,23 @@ if(isset($postdata) && !empty($postdata))
   $check_duplicate_name = "SELECT user_name from user_information
   WHERE user_name = '$name'";
 
-  if( !VerifyUserData($con,$check_duplicate_name,ValidateUserEnum::UserName))
-    return false;
+
   $check_duplicate_email = "SELECT user_mail from user_information
   WHERE user_mail = '$email'";
 
-  if(!VerifyUserData($con,$check_duplicate_email,ValidateUserEnum::Userpas))
-  return false;
+
 
   $check_duplicate_password = "SELECT user_password from user_information
   WHERE user_password = '$email'";
 
-  if(!VerifyUserData($con,$check_duplicate_password,ValidateUserEnum::UserEmail))
-  return false;
 
 
-
+  if( !VerifyUserData($con,$check_duplicate_name,ValidateUserEnum::UserName))
+    return false;
+  elseif (!VerifyUserData($con,$check_duplicate_email,ValidateUserEnum::UserEmail))
+    return false;
+  elseif (!VerifyUserData($con,$check_duplicate_password,ValidateUserEnum::Userpas))
+    return false;
 
   // Store.
   $insertdata = "INSERT INTO `user_information`(`user_name`,`user_mail`,`user_password`) VALUES ('{$name}','{$email}','{$pwd}')";
