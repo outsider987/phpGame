@@ -76,6 +76,7 @@ if(isset($postdata) && !empty($postdata))
   {
     http_response_code(201);
     $user = [
+      'validate' =>true,
       'user_name' => $name,
       'user_mail' => $email,
       'user_password'=>$pwd,
