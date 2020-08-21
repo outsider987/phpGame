@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
               console.log('duplicate');
             }
             else {
-              this.router.navigate(['main']);
+              this.router.navigate(['game']);
             }
           },
 

@@ -4,11 +4,11 @@ import { MatSidenav, MatDrawerToggleResult } from '@angular/material/sidenav';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class GameComponent implements OnInit {
+export class MainComponent implements OnInit {
   // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   constructor() { }
