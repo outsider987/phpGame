@@ -1,0 +1,100 @@
+<div class="main">
+  <mat-toolbar color="primary" class="header-toolbar">
+    <button mat-icon-button (click)="toggleSideNav(Menu)">
+      <mat-icon>{{ Menu.opened ? 'close' : 'menu' }}</mat-icon>
+    </button>
+    <span>I'm The Game</span>
+
+    <span class="toolbar-seprator"></span>
+    <button mat-icon-button (click)="toggleSideNav(drawerRight) "(click)="drawerMsg.close()">
+      <mat-icon>face</mat-icon>
+    </button>
+    <button mat-icon-button (click)="toggleSideNav(drawerMsg)" (click)="drawerRight.close()">
+      <mat-icon>message</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container [hasBackdrop]="false">
+    <mat-sidenav #Menu mode="push" position="start" class="sidenav">
+      <mat-toolbar color="primary">
+        <span>選單</span>
+        <span>
+          <mat-icon>verified_user</mat-icon>
+        </span>
+      </mat-toolbar>
+      <mat-list>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          第一遊戲
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          第二遊戲
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          第三遊戲
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>account_circle</mat-icon>
+          勝率曲線圖
+        </mat-list-item>
+        ...
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <mat-sidenav-container fixedInViewport="true">
+    <mat-sidenav #drawerRight position="end" mode="push" class="sidenavRight">
+      <mat-toolbar color="primary">
+        <span>基本資料</span>
+        <span>
+          <mat-icon>verified_user</mat-icon>
+        </span>
+      </mat-toolbar>
+      <mat-list>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>code</mat-icon>
+          Peterhu2Tri
+        </mat-list-item>
+        <mat-list-item class="l-sub-section">
+          <mat-icon>account_circle</mat-icon>
+          我是右邊選單的帳號
+        </mat-list-item>
+        ...
+      </mat-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+
+  <mat-sidenav-container fixedInViewport="true">
+    <mat-sidenav #drawerMsg position="end" mode="push" class="sidenavRight">
+      <mat-toolbar color="primary">
+        <span>聊天室</span>
+        <span>
+          <mat-icon>verified_user</mat-icon>
+        </span>
+      </mat-toolbar>
+
+      <h3 matSubheader>好友訊息</h3>
+      <mat-list-item>
+        <img matListAvatar src="..." />
+        <p matLine>志玲</p>
+        <p matLine>hi，好久不見，最近好嗎？</p>
+      </mat-list-item>
+      <mat-list-item>
+        <img matListAvatar src="..." />
+        <p matLine>依晨</p>
+        <p matLine>找時間吃個飯吧？</p>
+      </mat-list-item>
+    </mat-sidenav>
+  </mat-sidenav-container>
+
+</div>
