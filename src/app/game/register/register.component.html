@@ -1,37 +1,88 @@
 <h2 class="text-center">Registration</h2>
 <div class="row">
-<div class="col-md-3">
-</div>
-<div class="col-md-6 col-md-offset-3">
-<div class="jumbotron">
-<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
-<div class="form-group">
-<label for="name">Name</label>
-<input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name" [class.is-invalid] = "name.invalid && name.touched ">
-<div *ngIf="name.hasError('required') && name.touched"class="alert alert-danger">name coudln't be emty</div>
-<div *ngIf="name.hasError('minlength') && name.touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
-<diV *ngIf="name.hasError('cannotContainSpace') " class="alert alert-danger">Could'nt had whitespace .</diV>
-<diV *ngIf="user_failed_Enum == 0" class="alert alert-danger">the name is duplciate .</diV>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+      <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+        <div class="form-group">
+          <mat-form-field class="sign-up__input w-100">
+            <input type="text" name="name" formControlName="name" placeholder="{{'UserName' | translate}}" matInput
+              [class.is-invalid]="name.invalid">
 
-</div>
-<div class="form-group">
-<label for="email">Email</label>
-<input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email"  [class.is-invalid] = "email.invalid && email.touched">
-<div *ngIf="email.hasError('required') && email.touched"class="alert alert-danger">email coudln't be emty</div>
-<div *ngIf="email.invalid && email.touched"class="alert alert-danger">email is wrong format</div>
-<diV *ngIf="user_failed_Enum == 1" class="alert alert-danger">the mail is duplciate .</diV>
-</div>
-<div class="form-group">
-<label for="password">Password</label>
-<input type="password" name="password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password" [class.is-invalid] = "password.invalid && password.touched">
-<div *ngIf="password.hasError('required') && password.touched"class="alert alert-danger">password coudln't be emty</div>
-<div *ngIf="password.hasError('minlength') && password.touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
-<diV *ngIf="user_failed_Enum == 2" class="alert alert-danger">the password is duplciate .</diV>
-</div>
-<button type="submit" class="btn btn-success"[disabled]="!angForm.valid" >Register</button>
-</form>
-</div>
-</div>
-<div class="col-md-3">
-</div>
+            <mat-error *ngIf="name.hasError('cannotContainSpace') ">
+              {{'UserNamePatternOther' | translate}}
+            </mat-error>
+            <mat-error *ngIf="name.hasError('minlength')">
+              {{'UserNamePatternMin' | translate}}
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="sign-up__input w-100">
+            <input type="text" name="email" formControlName="email" placeholder="{{'Email' | translate}}" matInput
+              [class.is-invalid]="email.invalid">
+            <mat-error *ngIf="email.invalid">
+              {{'EmailPattern' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="sign-up__input w-100">
+            <input type="text" name="password" formControlName="password" placeholder="{{'Password' | translate}}"
+              matInput [class.is-invalid]="password.invalid">
+            <mat-error *ngIf="password.invalid">
+              Must contain a combination of both alphabetic letters (uppercase & lowercase) and numbers, 8 characters at
+              least
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="sign-up__input w-100">
+            <input type="text" name="password" formControlName="password"
+              placeholder="{{'Confirm' | translate}} {{'Password' | translate}}" matInput
+              [class.is-invalid]="password.invalid">
+            <mat-error *ngIf="password.invalid">
+              {{'M1006' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="sign-up__input w-100">
+          <mat-label>{{'Country' | translate}}</mat-label>
+          <select matNativeControl id="mySelectId">
+            <option *ngFor="let country of countries" [ngValue]="country">{{country?.name}}</option>
+          </select>
+        </mat-form-field>
+
+        <div class="sign-up__check">
+          <mat-checkbox>
+            <span>{{'Agreement.Main' | translate}} </span>
+            <a>{{'Agreement.Term' | translate}} </a>
+            {{'Agreement.And' | translate}}
+            <a>{{'Agreement.PrivacyPolicy' | translate}}</a>
+          </mat-checkbox>
+        </div>
+
+        <div class="sign-up__check">
+          <mat-checkbox>
+            Subscribe for special offers and promotions
+          </mat-checkbox>
+        </div>
+
+        <button class="d-flex justify-content-center btn btn-secondary btn-lg sign-up__register" type="submit"
+          [disabled]="!angForm.valid">Register
+        </button>
+        <span class="d-flex justify-content-center">
+          {{'HaveAccount' | translate}}<a>Sign in</a>
+        </span>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
 </div>

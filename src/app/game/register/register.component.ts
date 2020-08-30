@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -14,7 +15,7 @@ enum User_failed_Enum {
 }
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -22,7 +23,11 @@ enum User_failed_Enum {
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
   user_failed_Enum: User_failed_Enum;
-  constructor(private fb: FormBuilder, private dataService: UserService, private router: Router) {
+  countries: Array<any> = [];
+  constructor(private fb: FormBuilder, private dataService: UserService, private router: Router,
+              public translate: TranslateService,
+    )
+    {
     this.angForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")])],
       name: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidator.cannotContainSpace]),
@@ -34,6 +39,23 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
+    this.countries = [{
+      "name": "India",
+      "code": "IN"
+    },
+    {
+      "name": "United Kingdom",
+      "code": "UK"
+    },
+    {
+      "name": "United State",
+      "code": "EN"
+    },
+    {
+      "name": "Taiwan",
+      "code": "TW"
+    },
+    ];
   }
 
 

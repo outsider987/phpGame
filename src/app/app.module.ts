@@ -8,14 +8,17 @@ import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './game/login/login.component';
 import { RegisterComponent } from './game/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Game1Component } from './game/gmaeitem/game1.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 
-
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,16 @@ import { Game1Component } from './game/gmaeitem/game1.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
