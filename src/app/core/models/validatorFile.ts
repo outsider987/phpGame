@@ -1,13 +1,28 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, AbstractControl,ValidationErrors } from '@angular/forms';
 
+export function ConfirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 export class UsernameValidator {
   static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
-      if((control.value as string).indexOf(' ') >= 0){
-          return {cannotContainSpace: true};
-      }
-      // else{
-      //   return {cannotContainSpace: false}
-      // }
+    var pattern = new RegExp("[-._]");
+    var reg = /^([0-9]+)$/;
+    if(pattern.test(control.value)) {
+        return {cannotContainSpace: true};
+    } else if(control.value.indexOf(" ") != -1){
+        return {cannotContainSpace: true};
+    }
 
       return null;
   }

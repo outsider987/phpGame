@@ -1,46 +1,31 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
-declare var ddsc: any;
+import { TranslateService,LangChangeEvent } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { ReplaySubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
-  languageList: Observable<any>;
-  defaultLanguage: string;
-  allowLanguageList = [
-    'en',
-    'zh',
-    'th',
-    'vi'
-  ];
-  constructor(
-    private translate: TranslateService,
-  ) {
+  language$ = new ReplaySubject<LangChangeEvent>(1);
+  translate = this.translateService;
+  // 國旗對照
+  countryMap = new Map().set('en', 'flag-us').set('zh-tw', 'flag-tw');
 
+  constructor(private translateService: TranslateService) {}
+
+  setInitState() {
+    this.translateService.addLangs(['en', 'zh-tw']);
+    // 根據使用者的瀏覽器語言設定，如果是中文就顯示中文，否則都顯示英文
+    // 繁體/簡體中文代碼都是zh
+    const browserLang = (this.translate.getBrowserLang().includes('zh')) ? 'zh-tw' : 'en'  ;
+    this.setLang(browserLang);
   }
-  // 如果沒有設定語言 getBrowserLang -> langs -> en
-  // 最壞的情況會設定英文不至於崩潰
 
-  addLanguageList(obs: Observable<any>) {
-    obs.subscribe(res => {
-      const langs = res.map(element => {
-        const strloc: string = element.locale_code.replace('_', '-');
-
-        if (element.locale_code === 'en-GLOBAL') {
-          element.locale_code = 'en';
-        } else {
-          element.locale_code = strloc;
-        }
-        return element.locale_code;
-      });
-      this.translate.addLangs(langs);
+  setLang(lang: string) {
+    this.translateService.onLangChange.pipe(take(1)).subscribe(result => {
+      this.language$.next(result);
     });
+    this.translateService.use(lang);
   }
-
-  settingLanguage(translate: TranslateService) {
-    const languageCode = ddsc.admin.getLocaleSettings() ? ddsc.admin.getLocaleSettings().languageCode.split('-')[0] : 'en';
-    return translate.use(languageCode);
-  }
-
 }

@@ -4,7 +4,8 @@ import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angula
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
-import { UsernameValidator } from 'src/app/core/models/validatorFile';
+import { UsernameValidator,ConfirmedValidator } from 'src/app/core/models/validatorFile';
+import { LanguageService } from 'src/app/shared/language.service';
 
 
 enum User_failed_Enum {
@@ -24,17 +25,23 @@ export class RegisterComponent implements OnInit {
   angForm: FormGroup;
   user_failed_Enum: User_failed_Enum;
   countries: Array<any> = [];
-  constructor(private fb: FormBuilder, private dataService: UserService, private router: Router,
-              public translate: TranslateService,
+  constructor(private fb: FormBuilder,
+    private dataService: UserService,
+    private router: Router,
+    public translate: TranslateService,
+    private language: LanguageService,
     )
     {
     this.angForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")])],
       name: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidator.cannotContainSpace]),
       password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
+
+     confirm_password: ['', [Validators.required]]
+    }, {
+      validator: ConfirmedValidator('password', 'confirm_password')
     });
-    // debugger
-    // this.angForm.setValidators(UsernameValidator.cannotContainSpace)
+    this.language.setInitState();
   }
 
 
@@ -85,4 +92,5 @@ export class RegisterComponent implements OnInit {
   get email() { return this.angForm.get('email'); }
   get password() { return this.angForm.get('password'); }
   get name() { return this.angForm.get('name'); }
+  get confirm_password() { return this.angForm.get('confirm_password'); }
 }

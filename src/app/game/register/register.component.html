@@ -43,10 +43,10 @@
 
         <div class="form-group">
           <mat-form-field class="sign-up__input w-100">
-            <input type="text" name="password" formControlName="password"
+            <input type="password" name="confirm_password" formControlName="confirm_password"
               placeholder="{{'Confirm' | translate}} {{'Password' | translate}}" matInput
-              [class.is-invalid]="password.invalid">
-            <mat-error *ngIf="password.invalid">
+              [class.is-invalid]="confirm_password.invalid">
+            <mat-error *ngIf="confirm_password.invalid">
               {{'M1006' | translate}}
             </mat-error>
           </mat-form-field>

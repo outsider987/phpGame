@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './game/register/register.component';
 import { MainComponent } from './game/main.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -13,8 +14,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{
-    useHash: true
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, {
+    useHash: true,
   })],
 
   exports: [RouterModule]
