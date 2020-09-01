@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from './game/main.component';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './auth/register/register.component';
+import { MainComponent } from './auth/main/main.component';
 
 
 
